@@ -1,0 +1,137 @@
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_vpc_network.cloud will be created
+  + resource "yandex_vpc_network" "cloud" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = (known after apply)
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "empire"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_subnet.dev[0] will be created
+  + resource "yandex_vpc_subnet" "dev" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "dev-ru-central1-a"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.1.0.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+  # yandex_vpc_subnet.dev[1] will be created
+  + resource "yandex_vpc_subnet" "dev" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "dev-ru-central1-b"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.2.0.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-b"
+    }
+
+  # module.db_and_user.yandex_mdb_mysql_database.db will be created
+  + resource "yandex_mdb_mysql_database" "db" {
+      + cluster_id = (known after apply)
+      + id         = (known after apply)
+      + name       = "test"
+    }
+
+  # module.db_and_user.yandex_mdb_mysql_user.db_user will be created
+  + resource "yandex_mdb_mysql_user" "db_user" {
+      + authentication_plugin = "SHA256_PASSWORD"
+      + cluster_id            = (known after apply)
+      + connection_manager    = (known after apply)
+      + generate_password     = false
+      + global_permissions    = [
+          + "PROCESS",
+        ]
+      + id                    = (known after apply)
+      + name                  = "app"
+      + password              = (sensitive value)
+
+      + connection_limits {
+          + max_connections_per_hour = 30
+          + max_questions_per_hour   = 10
+          + max_updates_per_hour     = 20
+          + max_user_connections     = 40
+        }
+
+      + permission {
+          + database_name = "test"
+          + roles         = [
+              + "ALL",
+            ]
+        }
+    }
+
+  # module.example.yandex_mdb_mysql_cluster.mysql_db_cluster will be created
+  + resource "yandex_mdb_mysql_cluster" "mysql_db_cluster" {
+      + allow_regeneration_host   = false
+      + backup_retain_period_days = (known after apply)
+      + created_at                = (known after apply)
+      + deletion_protection       = (known after apply)
+      + disk_encryption_key_id    = (known after apply)
+      + environment               = "PRESTABLE"
+      + folder_id                 = (known after apply)
+      + health                    = (known after apply)
+      + host_group_ids            = (known after apply)
+      + id                        = (known after apply)
+      + mysql_config              = (known after apply)
+      + name                      = "example"
+      + network_id                = (known after apply)
+      + status                    = (known after apply)
+      + version                   = "8.0"
+
+      + access (known after apply)
+
+      + backup_window_start (known after apply)
+
+      + disk_size_autoscaling (known after apply)
+
+      + host {
+          + assign_public_ip   = false
+          + fqdn               = (known after apply)
+          + replication_source = (known after apply)
+          + subnet_id          = (known after apply)
+          + zone               = "ru-central1-a"
+        }
+      + host {
+          + assign_public_ip   = false
+          + fqdn               = (known after apply)
+          + replication_source = (known after apply)
+          + subnet_id          = (known after apply)
+          + zone               = "ru-central1-b"
+        }
+
+      + maintenance_window {
+          + day  = "SAT"
+          + hour = 12
+          + type = "WEEKLY"
+        }
+
+      + performance_diagnostics (known after apply)
+
+      + resources {
+          + disk_size          = 16
+          + disk_type_id       = "network-ssd"
+          + resource_preset_id = "s2.micro"
+        }
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.

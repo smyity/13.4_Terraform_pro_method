@@ -1,0 +1,11 @@
+# игнорировать содержимое папки .terraform во всех поддиректориях
+**/.terraform/*
+.terraform*
+
+# защита состояния .tfstate files
+*.tfstate
+*.tfstate.*
+
+# own secret vars store.
+personal.auto.tfvars
+#cloud-init.yml
