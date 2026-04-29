@@ -268,7 +268,19 @@ module "vpc_dev" {
 
 ### Решение 6*
 
-*здесь должно быть что-то*
+Документация: [yandex_storage_bucket](https://yandex.cloud/ru/docs/terraform/resources/storage_bucket)
+
+Создание ключей:
+```
+yc iam access-key create --service-account-name <имя_сервисного_аккаунта>
+```
+
+`key_id`: это будущее значение для `YC_STORAGE_ACCESS_KEY`\
+`secret`: это `YC_STORAGE_SECRET_KEY`
+
+[main.tf](task6/main.tf)
+
+![](pic/PIC014.PNG)
 
 ------
 

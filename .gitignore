@@ -9,3 +9,4 @@
 # own secret vars store.
 personal.auto.tfvars
 #cloud-init.yml
+shadow_var.tf
